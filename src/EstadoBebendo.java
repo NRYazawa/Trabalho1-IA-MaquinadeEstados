@@ -28,9 +28,7 @@ public class EstadoBebendo extends AbstractState<Festeiro> {
                 f.getDj().quebrarPC("PC quebrado pelo bebum");
             }
 
-            f.addTedio(100);
-            f.setState(new EstadoIndoEmbora(f));
-
+            f.setState(new EstadoNada(f));
         } else if (f.getEmbriaguez() >= 45 && f.getDinheiro() >= 20) {
             f.setState(new EstadoComendo(f));
         } else if (f.getEnergia() >= 100) {

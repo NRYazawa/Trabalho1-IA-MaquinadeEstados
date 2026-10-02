@@ -12,6 +12,11 @@ public class EstadoNada extends AbstractState<Festeiro> {
     public void execute() {
         Festeiro f = getCharacter();
 
+        if (f.getDj().isTocandoMusica() && f.getEnergia() >= 50) {
+            f.setState(new EstadoDancando(f));
+            return;
+        }
+
         f.addEnergia(10);
         f.addEmbriaguez(-5);
 
@@ -27,8 +32,6 @@ public class EstadoNada extends AbstractState<Festeiro> {
 
         if (f.getTedio() >= 100) {
             f.setState(new EstadoIndoEmbora(f));
-        } else if (f.getDj().isTocandoMusica() && f.getEnergia() >= 50) {
-            f.setState(new EstadoDancando(f));
         }
     }
 }
