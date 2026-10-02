@@ -16,18 +16,18 @@ public class EstadoNada extends AbstractState<Festeiro> {
         f.addEmbriaguez(-5);
 
         if (f.getDj().isTocandoMusica()) {
-            f.addTedio(5);
-            f.printStats("Parado (com música)");
+            if (f.getDinheiro() < 20) {
+                f.addTedio(5);
+            }
+            f.printStats("Que tédio...");
         } else {
             f.addTedio(10);
-            f.printStats("Parado (SEM música, tédio sobe mais rápido)");
+            f.printStats("Cadê a música? Que tédio...");
         }
 
         if (f.getTedio() >= 100) {
-            System.out.println(">>> Festeiro: Tédio chegou a 100, vai procurar outro lugar. Saindo de Nada e indo para IndoEmbora");
             f.setState(new EstadoIndoEmbora(f));
         } else if (f.getDj().isTocandoMusica() && f.getEnergia() >= 50) {
-            System.out.println(">>> Festeiro: A música voltou e a energia está recuperada. Saindo de Nada e indo para Dancando");
             f.setState(new EstadoDancando(f));
         }
     }

@@ -5,7 +5,7 @@ public class EstadoBebendo extends AbstractState<Festeiro> {
 
     @Override
     public void enter() {
-        System.out.println("Festeiro: só mais um drink");
+        System.out.println("Festeiro: Preciso de um drink");
     }
 
     @Override
@@ -16,25 +16,30 @@ public class EstadoBebendo extends AbstractState<Festeiro> {
         f.addEmbriaguez(15);
         f.printStats("Bebendo...");
 
-        if (f.getEmbriaguez() > 80) {
+        int limite = 80;
+        if (f.getDinheiro() < 20) {
+            limite = 60;
+        }
+
+        if (f.getEmbriaguez() > limite) {
             if (f.getDj().isPcQuebrado()) {
-                System.out.println(">>> Festeiro: Embriaguez acima de 80 (o PC do DJ já estava quebrado). Saindo de Bebendo e indo para Nada");
             } else {
-                f.getDj().quebrarPC("PC quebrado pelo Festeiro");
-                System.out.println(">>> Festeiro: Embriaguez acima de 80, quebrou o PC do DJ. Saindo de Bebendo e indo para Nada");
+                System.out.println("Festeiro derrubou bebida no PC do DJ!");
+                f.getDj().quebrarPC("PC quebrado pelo bebum");
             }
-            f.setState(new EstadoNada(f));
-        } else if (f.getEmbriaguez() >= 45 && f.getRefeicoes() < 1) {
-            System.out.println(">>> Festeiro: Tô ficando bebaço (" + f.getEmbriaguez() + "), melhor comer algo. Saindo de Bebendo e indo para Comendo");
+
+            f.addTedio(100);
+            f.setState(new EstadoIndoEmbora(f));
+
+        } else if (f.getEmbriaguez() >= 45 && f.getDinheiro() >= 20) {
             f.setState(new EstadoComendo(f));
         } else if (f.getEnergia() >= 100) {
-            System.out.println(">>> Festeiro: Energia recuperada. Saindo de Bebendo e indo para Dancando");
             f.setState(new EstadoDancando(f));
         }
     }
 
     @Override
     public void leave() {
-        System.out.println("Festeiro: Largou o copo.");
+        System.out.println("Festeiro: Acabou a bebida.");
     }
 }

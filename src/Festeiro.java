@@ -3,7 +3,7 @@ public class Festeiro implements Character {
     private int energia = 100;
     private int embriaguez = 0;
     private int tedio = 0;
-    private int refeicoes = 0;
+    private int dinheiro = 40;
 
     private State<Festeiro> state = new EstadoDancando(this);
 
@@ -43,12 +43,13 @@ public class Festeiro implements Character {
         this.tedio = Math.max(0, Math.min(this.tedio, 100));
     }
 
-    public int getRefeicoes() {
-        return refeicoes;
+    public int getDinheiro() {
+        return dinheiro;
     }
 
-    public void addRefeicao() {
-        this.refeicoes++;
+    public void addDinheiro(int dinheiro) {
+        this.dinheiro += dinheiro;
+        this.dinheiro = Math.max(0, this.dinheiro);
     }
 
     @Override
@@ -68,6 +69,7 @@ public class Festeiro implements Character {
         System.out.println("[Festeiro] " + state
                 + " | Energia: " + energia
                 + " | Embriaguez: " + embriaguez
-                + " | Tédio: " + tedio);
+                + " | Tédio: " + tedio
+                + " | Grana: " + dinheiro);
     }
 }

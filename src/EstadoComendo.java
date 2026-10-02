@@ -5,8 +5,8 @@ public class EstadoComendo extends AbstractState<Festeiro> {
 
     @Override
     public void enter() {
-        getCharacter().addRefeicao();
-        System.out.println("Festeiro: Indo comer");
+        getCharacter().addDinheiro(-20);
+        System.out.println("Festeiro: Bateu uma fominha");
     }
 
     @Override
@@ -19,10 +19,8 @@ public class EstadoComendo extends AbstractState<Festeiro> {
 
         if (f.getEmbriaguez() <= 30) {
             if (f.getDj().isTocandoMusica()) {
-                System.out.println(">>> Festeiro: Embriaguez sob controle. Saindo de Comendo e indo para Dancando");
                 f.setState(new EstadoDancando(f));
             } else {
-                System.out.println(">>> Festeiro: Embriaguez sob controle, mas sem música. Saindo de Comendo e indo para Nada");
                 f.setState(new EstadoNada(f));
             }
         }

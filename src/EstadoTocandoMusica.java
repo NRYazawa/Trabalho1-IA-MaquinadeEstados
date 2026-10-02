@@ -13,11 +13,11 @@ public class EstadoTocandoMusica extends AbstractState<DJ> {
     public void execute() {
         DJ dj = getCharacter();
 
-        dj.printStats("Tocando música " + dj.getMusicaAtual() + "/4 (status " + dj.getStatusMusica() + "/4)");
+        dj.printStats("Tocando música... " + dj.getMusicaAtual() + "/4 (status " + dj.getStatusMusica() + "/4)");
         dj.tocarMusica();
 
         if (dj.getMusicaAtual() > 4) {
-            dj.quebrarPC("Playlist terminou (4 músicas), o PC parou");
+            dj.quebrarPC("Acabou a playlist...preciso procurar outra rápido!");
         } else if (dj.getStatusMusica() == 1) {
             System.out.println("DJ: Música terminou, passando para a música " + dj.getMusicaAtual() + "/4");
         }

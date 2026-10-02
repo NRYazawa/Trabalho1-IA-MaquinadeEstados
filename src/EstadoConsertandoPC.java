@@ -18,7 +18,6 @@ public class EstadoConsertandoPC extends AbstractState<DJ> {
 
         if (dj.getProgressoConserto() >= 100) {
             dj.setPcQuebrado(false);
-            System.out.println(">>> DJ: Conserto concluído. Saindo de ConsertandoPC e indo para TocandoMusica");
             dj.setState(new EstadoTocandoMusica(dj));
         }
     }

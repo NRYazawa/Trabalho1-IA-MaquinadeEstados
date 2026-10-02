@@ -4,7 +4,7 @@ public class StateMachine {
     private ArrayList<Character> characters = new ArrayList<>();
 
     public void run() {
-        System.out.println("===== A FESTA COMEÇOU =====");
+        System.out.println("===== COMEÇA A FESTA =====");
         DJ dj = new DJ();
         Festeiro festeiro = new Festeiro(dj);
 
@@ -20,13 +20,13 @@ public class StateMachine {
             }
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
         }
 
-        System.out.println("\n===== FIM DA FESTA (ciclos: " + ciclo + ") =====");
+        System.out.println("\n===== FIM DA FESTA (Ciclos: " + ciclo + ") =====");
     }
 
     public static void main(String[] args) {

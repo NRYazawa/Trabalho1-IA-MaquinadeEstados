@@ -57,7 +57,6 @@ public class DJ implements Character {
 
     public void quebrarPC(String motivo) {
         this.pcQuebrado = true;
-        System.out.println(">>> DJ: " + motivo + ". Saindo de TocandoMusica e indo para ConsertandoPC");
         setState(new EstadoConsertandoPC(this));
     }
 
